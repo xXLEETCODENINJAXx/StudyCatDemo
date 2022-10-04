@@ -2,10 +2,14 @@ package com.StudyCat.StudyCatDemo.model
 
 import javax.persistence.*
 
-//@Entity
-data class StudentModel(
-    override var id: Int, override var firstName: String, override var lastName: String,
-    override var institution: String) : UserModel
+@Entity
+data class Student(
+    @Id @GeneratedValue val id: Long,  val firstName: String = "",  val lastName: String = " ",
+    val institution: String = " ") {
+    constructor() : this(-1) {
+
+    }
+}
 //) {
 //    public constructor() : this(0," ", " ", " ")
 //

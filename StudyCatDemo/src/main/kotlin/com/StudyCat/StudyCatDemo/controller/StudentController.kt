@@ -1,19 +1,21 @@
 package com.StudyCat.StudyCatDemo.controller
 
-import com.StudyCat.StudyCatDemo.model.StudentModel
+import com.StudyCat.StudyCatDemo.model.Student
+import com.StudyCat.StudyCatDemo.repository.StudentRepository
+import com.StudyCat.StudyCatDemo.service.StudentService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
 class StudentController {
 
-//    @Autowired
-//    lateinit var repository: StudentRepository
-
+    @Autowired
+    lateinit var studentService: StudentService
     private var studentList = mutableListOf(
-        StudentModel(1, "Sam", "Kimbinyi", "StudyCat"),
-        StudentModel(2, "Nurideen", "Kalmey", "StudyCat"),
-        StudentModel(3, "Jawarneh", "Muhammad", "StudyCat")
+        Student(1, "Sam", "Kimbinyi", "StudyCat"),
+        Student(2, "Nurideen", "Kalmey", "StudyCat"),
+        Student(3, "Jawarneh", "Muhammad", "StudyCat")
 
     )
 
@@ -22,10 +24,12 @@ class StudentController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    fun postStudents(@RequestBody student: StudentModel) : StudentModel {
+    fun postStudents(@RequestBody student: Student) : Student {
         val maxId = studentList.maxOfOrNull { it.id } ?: 0
         val nextId = maxId + 1
-        val newStudent = StudentModel(id = nextId, firstName = student.firstName, lastName = student.lastName, institution = student.institution)
+        val newStudent = Student(id = nextId, firstName = student.firstName, lastName = student.lastName, institution = student.institution)
+        println("Adding new student...")
+        studentService.addStudent(student)
         studentList.add(newStudent)
         return newStudent
 
