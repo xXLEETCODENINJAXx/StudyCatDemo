@@ -7,3 +7,7 @@ Content-Type: application/json
   "lastName" : "Kalmey",
   "institution": "School of Deen"
 }
+
+###
+GET http://localhost:8080
+Content-type: application/json

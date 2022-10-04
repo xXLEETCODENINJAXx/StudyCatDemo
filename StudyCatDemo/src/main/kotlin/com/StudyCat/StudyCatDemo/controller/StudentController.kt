@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 class StudentController {
+
+//    @Autowired
+//    lateinit var repository: StudentRepository
+
     private var studentList = mutableListOf(
         StudentModel(1, "Sam", "Kimbinyi", "StudyCat"),
         StudentModel(2, "Nurideen", "Kalmey", "StudyCat"),
@@ -26,4 +30,16 @@ class StudentController {
         return newStudent
 
     }
+
+//    @RequestMapping("/findall")
+//    fun findAll(): MutableIterable<StudentModel> = repository.findAll()
+//
+//    @RequestMapping("/findbyid/{id}")
+//    fun findById(@PathVariable id: Long)
+//            = repository.findById(id)
+//
+//    @RequestMapping("findbylastname/{lastName}")
+//    fun findByLastName(@PathVariable lastName: String)
+//            = repository.findByLastName(lastName)
+
 }
